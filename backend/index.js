@@ -5,7 +5,6 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const mongoose = require("mongoose")
 dotenv.config();
 
-// Connect to database
 
 const app = express();
 
@@ -13,8 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Routes
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/flights', require('./routes/flightRoutes'));
+app.use('/api/hotels', require('./routes/hotelRoutes'));
+app.use('/api/bookings', require('./routes/bookingRoutes'));
 
 app.use(errorHandler);
 
