@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const asyncHandler = require('express-async-handler');
-const User = require('../models/userModel');
+const User = require('../models/user');
 
 
-const registerUser = asyncHandler(async (req, res) => {
+const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -39,10 +38,10 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Invalid user data');
   }
-});
+};
 
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -58,12 +57,12 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Invalid credentials');
   }
-});
+};
 
 
-const getMe = asyncHandler(async (req, res) => {
+const getMe = async (req, res) => {
   res.status(200).json(req.user);
-});
+};
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {

@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const { errorHandler } = require('./middleware/errorMiddleware');
 const mongoose = require("mongoose")
 dotenv.config();
 
@@ -12,12 +11,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/flights', require('./routes/flightRoutes'));
-app.use('/api/hotels', require('./routes/hotelRoutes'));
-app.use('/api/bookings', require('./routes/bookingRoutes'));
+app.use('/api/users', require('./routes/user'));
+app.use('/api/flights', require('./routes/flight'));
+app.use('/api/hotels', require('./routes/hotel'));
+app.use('/api/bookings', require('./routes/booking'));
 
-app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 

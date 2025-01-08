@@ -4,8 +4,8 @@ const {
   registerUser,
   loginUser,
   getMe,
-} = require('../controllers/userController');
-const { protect } = require('../middleware/authMiddleware');
+} = require('../controllers/user');
+const { protect } = require('../config/authMiddleware');
 
 router.post('/', registerUser);
 router.post('/login', loginUser);

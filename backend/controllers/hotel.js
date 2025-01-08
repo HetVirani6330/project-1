@@ -1,13 +1,12 @@
-const asyncHandler = require('express-async-handler');
-const Hotel = require('../models/hotelModel');
+const Hotel = require('../models/hotel');
 
 
-const getHotels = asyncHandler(async (req, res) => {
+const getHotels = async (req, res) => {
     const hotels = await Hotel.find({});
     res.status(200).json(hotels);
-});
+};
 
-const createHotel = asyncHandler(async (req, res) => {
+const createHotel = async (req, res) => {
     const { name, location, pricePerNight, roomsAvailable, amenities, rating } = req.body;
 
     const hotel = await Hotel.create({
@@ -20,7 +19,7 @@ const createHotel = asyncHandler(async (req, res) => {
     });
 
     res.status(201).json(hotel);
-});
+};
 
 module.exports = {
     getHotels,
